@@ -16,8 +16,10 @@
         <!--<li><a href="#">Link</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><strong>Logged as: MOCKED_USERAME</strong></a></li>
-        <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out!</a></li>
+        <li *ngIf="!authService.isLoggedIn()"><a routerLink="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a></li>
+        <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a></li>
+        <li *ngIf="authService.isLoggedIn()"><a href="#"><strong>Logged as: {{authService.currentUser.sub}}</strong></a></li>
+        <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out!</a></li>
       </ul>
     </div>
   </div>
